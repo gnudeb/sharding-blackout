@@ -109,6 +109,10 @@ if __name__ == "__main__":
     for record in range(record_count):
         db.push(record, at_random=args.random)
 
+    print("Simulating {} servers with {} records, redundancy of {} and {} record storing".format(
+        server_count, record_count, redundancy, "random" if args.random else "mirror"
+    ))
+
     failure_probability = db.blast(count=servers_to_kill)
 
     print("Killing {} arbitrary servers results in data loss in {}% cases".format(
